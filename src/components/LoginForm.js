@@ -6,7 +6,12 @@ import firebase from 'firebase';
 
 
 class LoginForm extends React.Component {
-  state = { email: '',password: '', error: '', loading: false };
+  state = {
+    email: '',
+    password: '',
+    error: '',
+    loading: false
+  };
 
   onButtonPress() {
     const { email, password } = this.state;
@@ -33,52 +38,52 @@ class LoginForm extends React.Component {
 
   onLoginFail() {
     this.setState({ error: 'Authentication Failed', loading: false })
-}
-
-renderButton() {
-  if (this.state.loading) {
-    return <Spinner size="small" />
   }
-  return (
-    <Button onPress={this.onButtonPress.bind(this)}>
-      Log In
+
+  renderButton() {
+    if (this.state.loading) {
+      return <Spinner size="small" />
+    }
+    return (
+      <Button onPress={this.onButtonPress.bind(this)}>
+        Log In
           </Button>
-  )
-}
+    )
+  }
 
-render() {
-  return (
-    <Event>
-      <EventSection>
-        <Field
-          placeholder="user@gmail.com"
-          label="Email"
-          value={this.state.email}
-          onChangeText={email => this.setState({ email })}
-        />
-      </EventSection>
+  render() {
+    return (
+      <Event>
+        <EventSection>
+          <Field
+            placeholder="user@gmail.com"
+            label="Email"
+            value={this.state.email}
+            onChangeText={email => this.setState({ email })}
+          />
+        </EventSection>
 
-      <EventSection>
-        <Field
-          secureTextEntry
-          placeholder="password"
-          label="Password"
-          value={this.state.password}
-          onChangeText={password => this.setState({ password })}
-        />
+        <EventSection>
+          <Field
+            secureTextEntry
+            placeholder="password"
+            label="Password"
+            value={this.state.password}
+            onChangeText={password => this.setState({ password })}
+          />
 
-      </EventSection>
+        </EventSection>
 
-      <Text style={styles.errorTextStyle}>
-        {this.state.error}
-      </Text>
+        <Text style={styles.errorTextStyle}>
+          {this.state.error}
+        </Text>
 
-      <EventSection>
-        {this.renderButton()}
-      </EventSection>
-    </Event>
-  );
-}
+        <EventSection>
+          {this.renderButton()}
+        </EventSection>
+      </Event>
+    );
+  }
 }
 
 const styles = {
